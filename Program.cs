@@ -9,6 +9,7 @@ namespace Hw_registr
             DataBaseService dbService = new DataBaseService();
             dbService.EnsurePopulate();
 
+            
             Console.WriteLine("Выберите действие:");
             Console.WriteLine("1. Регистрация");
             Console.WriteLine("2. Авторизация");
@@ -38,19 +39,13 @@ namespace Hw_registr
         public string Password { get; set; }
     }
 
-    //public class Authorization
-    //{
-        
-    //}
-
-
     public class ApplicationContext : DbContext
     {
         public DbSet<Registration> Registrations { get; set; } = null;
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-Q2JP8KP;Database=Motel;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-TBASQVJ;Database=Motel;Trusted_Connection=True;TrustServerCertificate=True;");
         }
     }
     public class DataBaseService
@@ -59,7 +54,7 @@ namespace Hw_registr
         {
             using (var db = new ApplicationContext()) 
             { 
-                db.Database.EnsureDeleted();
+                //db.Database.EnsureDeleted();
                 db.Database.EnsureCreated();
             }
         }

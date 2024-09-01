@@ -19,6 +19,16 @@ namespace Hw_registr
             string password = Console.ReadLine();
 
             string hashpass = HashPassword(password);
+            using (var db = new ApplicationContext())
+            {
+                var user = new Registration
+                {
+                    Login = login,
+                    Password = hashpass
+                };
+                db.Registrations.Add(user);
+                db.SaveChanges(); 
+            }
 
         }
         public static string HashPassword(string password)
